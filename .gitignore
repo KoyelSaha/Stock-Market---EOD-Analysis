@@ -1,2 +1,5 @@
 .Rproj.user/*
 secrets.json
+.Rproj.user
+.Rhistory
+# CA_ONE.Rproj
