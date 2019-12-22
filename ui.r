@@ -12,12 +12,14 @@ ui <- fluidPage(
     sidebarPanel(
       textInput(inputId='company_code', 
                 label='Company Code', 
-                value='GOOG')
+                value='GOOG'),
+      
+      submitButton('Submit')
     ),
     
     mainPanel(
       tableOutput(outputId='company_eod')
-    ),
+    )
   ),
   
 )
