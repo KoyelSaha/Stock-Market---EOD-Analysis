@@ -1,6 +1,20 @@
 library(shiny)
-library(Quandl)
-library(rjson)
+sidebar = 3
+main_panel = 12 - sidebar
+
+plot_tab <- tabPanel('Plot', h4(textOutput('plot_title')), plotOutput('eod_plot'))
+
+summary_tab <- tabPanel('Summary',
+                        h4(textOutput('summary_title')),
+                        fluidRow(
+                          column(main_panel, verbatimTextOutput('summary'))
+                        ),
+                        
+                        fluidRow(
+                          column(main_panel, plotOutput('summary_first'))
+                        ))
+
+table_tab <- tabPanel('Table', tableOutput('company_eod'))
 
 
 ui <- fluidPage(
@@ -20,10 +34,11 @@ ui <- fluidPage(
     
     column(12-3,
       tabsetPanel(type='tabs',
-                  tabPanel('Plot', plotOutput('eod_plot')),
-                  tabPanel('Summary', verbatimTextOutput('summary')),
-                  tabPanel('Table', tableOutput('company_eod')))
+                  plot_tab,
+                  summary_tab,
+                  table_tab)
     )
   ),
   
 )
+
