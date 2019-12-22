@@ -18,7 +18,10 @@ ui <- fluidPage(
     ),
     
     mainPanel(
-      tableOutput(outputId='company_eod')
+      tabsetPanel(type='tabs',
+                  tabPanel('Plot', plotOutput('eod_plot')),
+                  tabPanel('Summary', verbatimTextOutput('summary')),
+                  tabPanel('Table', tableOutput('company_eod')))
     )
   ),
   
