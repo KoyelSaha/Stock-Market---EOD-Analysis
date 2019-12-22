@@ -6,18 +6,19 @@ library(rjson)
 ui <- fluidPage(
   
   titlePanel('Stock Market - EOD Analysis.'),
+  hr(),
   
-  sidebarLayout(
+  fluidRow(
     
-    sidebarPanel(
+    column(3, h4('Select Company:'),
       textInput(inputId='company_code', 
                 label='Company Code', 
                 value='GOOG'),
       
       submitButton('Submit')
-    ),
+      ),
     
-    mainPanel(
+    column(12-3,
       tabsetPanel(type='tabs',
                   tabPanel('Plot', plotOutput('eod_plot')),
                   tabPanel('Summary', verbatimTextOutput('summary')),
