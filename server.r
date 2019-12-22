@@ -27,9 +27,13 @@ server <- function(input, output, session) {
     # Descriptive Statistics.
     output$summary_title <- renderText(paste('Descriptive statistics for', input$company_code))
     output$summary <- renderPrint({summary(eod_data()[, c('Open', 'Close', 'High', 'Low')])})
-    output$summary_first <- renderPlot(ggplot(melt(eod_data()[ ,c('Open', 'Close', 'High', 'Low')]), 
+    output$summary_first <- renderPlot(ggplot(eod_data(), aes(x=Date, y=Close, group=1)) +
+                                         geom_line() +
+                                         geom_ma(ma_fun=SMA, n=100, linetype='solid',
+                                                 color='red', size=1))
+    output$summary_second <- renderPlot(ggplot(melt(eod_data()[ ,c('Open', 'Close', 'High', 'Low')]), 
                                               aes(variable, value)) +
-                                       geom_boxplot())
-    
+                                         geom_boxplot())
+        
   
 }

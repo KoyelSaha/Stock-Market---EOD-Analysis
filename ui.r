@@ -16,6 +16,10 @@ summary_tab <- tabPanel('Summary',
                         
                         fluidRow(
                           column(main_panel, plotOutput('summary_first'))
+                        ),
+                        
+                        fluidRow(
+                          column(main_panel, plotOutput('summary_second'))
                         ))
 
 # Main Panel tab for raw data.
