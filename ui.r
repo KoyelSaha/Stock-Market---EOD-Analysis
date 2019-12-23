@@ -14,6 +14,8 @@ ui <- fluidPage(
                 label='Company Code', 
                 value='GOOG'),
       
+      dateRangeInput(inputId = 'date_range', label = 'Select Range of data:'),
+      
       submitButton('Submit')
       ),
     
@@ -23,7 +25,6 @@ ui <- fluidPage(
                   summary_tab,
                   table_tab)
     )
-  ),
-  
+  )
 )
 
