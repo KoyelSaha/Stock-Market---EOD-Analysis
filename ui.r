@@ -23,7 +23,8 @@ ui <- fluidPage(
       tabsetPanel(type='tabs',
                   plot_tab,
                   summary_tab,
-                  table_tab)
+                  table_tab,
+                  hypothesis_tab)
     )
   )
 )
