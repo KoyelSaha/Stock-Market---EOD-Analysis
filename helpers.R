@@ -41,11 +41,11 @@ hypothesis_result <- function(final_2) {
   x <- final_2[final_2$max_dev, ]
   xbar = x$rank_average
   
-  t_stat = (xbar - mean(final_2$rank_average)) / (sd(final_2$rank_average) / sqrt(12))
+  t_stat = (xbar - mean(final_2$rank_average)) * sqrt(12) / sd(final_2$rank_average)
   
   test_statement <- paste('c-value at 5% sicnificance level: -2.81 <br>',
                           'We consider absolute value of c for a two tailed test. <br>',
-                          'The value of test statistic (t-value) is:',  round(t_stat), '<br>')
+                          'The value of test statistic (t-value) is:',  round(t_stat, 2), '<br>')
   
   if (abs(t_stat) >= 2.81) {
     result <- 'Since the absolute t-value is higher than absolute c-value, we reject the null hypothesis for this company. <br>

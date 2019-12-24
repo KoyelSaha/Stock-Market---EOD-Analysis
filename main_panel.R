@@ -20,7 +20,19 @@ summary_tab <- tabPanel('Summary',
                         
                         fluidRow(
                           column(main_panel_width, plotOutput('summary_second'))
-                        ))
+                        ),
+                        
+                        fluidRow((
+                          column(main_panel_width,
+                                 h4('Distribution of Volume:'),
+                                 plotOutput('summary_third'))
+                        ),
+                        
+                        fluidRow(
+                          column(main_panel_width, 
+                                 h4('Distribution of Closing Price:'),
+                                 plotOutput('summary_fourth'))
+                        )))
 
 # Main Panel tab for raw data.
 table_tab <- tabPanel('Table', tableOutput('company_eod'))

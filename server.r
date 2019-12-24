@@ -47,11 +47,24 @@ server <- function(input, output, session) {
     
     output$summary_first <- renderPlot(ggplot(eod_subset(), aes(x=Date, y=Adj..Close, group=1)) +
                                          geom_line() +
-                                         geom_ma(ma_fun=SMA, n=100, linetype='solid', color='red', size=1))
+                                         geom_ma(ma_fun=SMA, n=100, linetype='solid', color='red', size=1) +
+                                         labs(x = '',
+                                              y = 'Adjusted Closing price'))
                                        
     output$summary_second <- renderPlot(ggplot(melt(eod_subset()[ ,c('Open', 'Close', 'High', 'Low')]), 
-                                              aes(variable, value)) +
-                                          geom_boxplot())
+                                               aes(variable, value)) +
+                                          geom_boxplot() +
+                                          labs(y = ''))
+    
+    output$summary_third <- renderPlot(ggplot(eod_subset(), aes(x = Volume)) +
+                                          geom_histogram(bins = 300, fill = "red") +
+                                          scale_x_log10() +
+                                          theme(panel.background = element_rect(fill = 'light blue', colour = 'black')))
+    
+    output$summary_fourth <- renderPlot(ggplot(eod_subset(), aes(x = Close)) +
+                                          geom_histogram(bins = 300, fill = "red") +
+                                          scale_x_log10() +
+                                          theme(panel.background = element_rect(fill = 'light blue', colour = 'black')))
     
     # Hypothesis Testing:
     final <- reactive(get_final(eod_data()))
