@@ -58,3 +58,24 @@ hypothesis_result <- function(final_2) {
   
   return(paste(test_statement, result))
 }
+
+get_glm <- function(df) {
+  
+  indexes = sample(1:nrow(df), nrow(df) * .1)
+  trainset = df[indexes, ] 
+  testset = df[-indexes, ]
+  
+  model_ <- glm(Close~High+Low+Open, data = trainset, family="gaussian")
+  
+  model_summary_ <- summary(model_)
+  
+  predicted_ <- predict(model_, testset)
+  
+  rmse_ <- sqrt( (sum(predicted_ - testset$Close)^2) / (nrow(testset)) )
+  
+  predicted_df_ <- data.frame('Date' = testset$Date, 'Close' = testset$Close, 'predicted' = predicted_)
+  
+  return (list(model_summary = model_summary_,
+              predicted_df = predicted_df_,
+              rmse = rmse_))
+}

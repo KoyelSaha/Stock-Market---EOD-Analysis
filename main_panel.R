@@ -67,3 +67,10 @@ hypothesis_tab <- tabPanel('Hypothesis Test',
                            h3('Test of hypothesis:'),
                            htmlOutput(outputId = 'hypothesis_test')
                            )
+
+glm_tab <- tabPanel('GLM',
+                    h2('GLM Model'),
+                    h4('Summary of the model generated:'),
+                    verbatimTextOutput(outputId = 'glm_first'),
+                    h4('Predicted and Actual value plot together:'),
+                    plotOutput(outputId = 'glm_second'))

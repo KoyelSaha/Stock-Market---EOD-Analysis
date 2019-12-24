@@ -57,12 +57,12 @@ server <- function(input, output, session) {
                                           labs(y = ''))
     
     output$summary_third <- renderPlot(ggplot(eod_subset(), aes(x = Volume)) +
-                                          geom_histogram(bins = 300, fill = "red") +
+                                          geom_density(bins = 300, fill = "red") +
                                           scale_x_log10() +
                                           theme(panel.background = element_rect(fill = 'light blue', colour = 'black')))
     
     output$summary_fourth <- renderPlot(ggplot(eod_subset(), aes(x = Close)) +
-                                          geom_histogram(bins = 300, fill = "red") +
+                                          geom_density(bins = 300, fill = "red") +
                                           scale_x_log10() +
                                           theme(panel.background = element_rect(fill = 'light blue', colour = 'black')))
     
@@ -102,5 +102,15 @@ server <- function(input, output, session) {
     
     output$hypothesis_test <- renderUI(HTML(hypothesis_result(final_2())))
     
-
+    glm_things <- reactive(get_glm(eod_data()))
+    
+    output$glm_first <- renderPrint(glm_things()['model_summary'])
+    
+    output$glm_second <- renderPlot(ggplot(melt(glm_things()['predicted_df'], id.vars = 'Date', measure.vars = c('Close', 'predicted')), 
+                                           aes(x=Date, y=value, 
+                                               group = variable,
+                                               color = variable)) +
+                                      geom_line(size = 1) +
+                                      theme_bw())
+    
 }

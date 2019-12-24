@@ -24,7 +24,8 @@ ui <- fluidPage(
                   plot_tab,
                   summary_tab,
                   table_tab,
-                  hypothesis_tab)
+                  hypothesis_tab,
+                  glm_tab)
     )
   )
 )
