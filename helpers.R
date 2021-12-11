@@ -1,3 +1,12 @@
+### Application name : CA1 B9DA101 - Statistics for Data Analytics
+### Course : MSc (Data Analytics) - Sep 2019 - Group A 
+### Developed by : Koyel Saha (10521711) / Monil Modi (10521306) / Parth Thakur (10520930)
+### College : Dublin Business School 
+### URL : https://parth-thakur.shinyapps.io/EOD_Analysis/
+
+
+####>>>>BEGIN>>>> Monil Modi (10521306) >>>>
+
 main_url <- "https://www.quandl.com/api/v3/datasets/WIKI/"
 api_key <- readtext('secrets.txt')$text
 
@@ -37,6 +46,10 @@ get_final_2 <- function(final){
   return(final_2)
 }
 
+####<<<<END<<<< Monil Modi (10521306) <<<<
+
+####>>>>BEGIN>>>> Parth Thakur (10520930) >>>>
+
 hypothesis_result <- function(final_2) {
   x <- final_2[final_2$max_dev, ]
   xbar = x$rank_average
@@ -59,6 +72,10 @@ hypothesis_result <- function(final_2) {
   return(paste(test_statement, result))
 }
 
+####<<<<END<<<< Parth Thakur (10520930) <<<<
+
+####>>>>BEGIN>>>> Koyel Saha (10521711) >>>>
+
 get_glm <- function(df) {
   
   indexes = sample(1:nrow(df), nrow(df) * .1)
@@ -79,3 +96,4 @@ get_glm <- function(df) {
               predicted_df = predicted_df_,
               rmse = rmse_))
 }
+####<<<<END<<<< Koyel Saha (10521711) <<<<

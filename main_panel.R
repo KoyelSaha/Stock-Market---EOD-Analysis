@@ -1,3 +1,10 @@
+### Application name : CA1 B9DA101 - Statistics for Data Analytics
+### Course : MSc (Data Analytics) - Sep 2019 - Group A 
+### Developed by : Koyel Saha (10521711) / Monil Modi (10521306) / Parth Thakur (10520930)
+### College : Dublin Business School 
+### URL : https://parth-thakur.shinyapps.io/EOD_Analysis/
+
+
 library(shiny)
 
 # Grid layout dimensions
@@ -5,7 +12,13 @@ sidebar_width = 3
 main_panel_width = 12 - sidebar_width
 
 # Main panel tab for Candle-Stick plot
-plot_tab <- tabPanel('Plot', h4(textOutput('plot_title')), plotOutput('eod_plot'))
+plot_tab <- tabPanel('Plot', h4(textOutput('plot_title')), plotOutput('eod_plot'),
+                       HTML('Company code refers to NASDAQ symbols and can be found at: <a href=\'http://eoddata.com/stocklist/NASDAQ/F.htm\'> EOD Stock list </a> <br>
+                             Press the \'Submit\' button to start the app.')
+                     )
+
+
+####>>>>BEGIN>>>> Monil Modi (10521306) >>>>
 
 # Main Panel tab for descriptive statistics.
 summary_tab <- tabPanel('Summary',
@@ -37,6 +50,10 @@ summary_tab <- tabPanel('Summary',
 # Main Panel tab for raw data.
 table_tab <- tabPanel('Table', tableOutput('company_eod'))
 
+####<<<<END<<<< Monil Modi (10521306) <<<<
+
+####>>>>BEGIN>>>> Parth Thakur (10520930) >>>>
+
 # Main Panel tab for hypothesis testing.
 hypothesis_tab <- tabPanel('Hypothesis Test',
                            h2('There Exists a month where volatility is different than the rest.'),
@@ -67,6 +84,9 @@ hypothesis_tab <- tabPanel('Hypothesis Test',
                            h3('Test of hypothesis:'),
                            htmlOutput(outputId = 'hypothesis_test')
                            )
+####<<<<END<<<< Parth Thakur (10520930) <<<<
+
+####>>>>BEGIN>>>> Koyel Saha (10521711) >>>>
 
 glm_tab <- tabPanel('GLM',
                     h2('GLM Model'),
@@ -74,3 +94,5 @@ glm_tab <- tabPanel('GLM',
                     verbatimTextOutput(outputId = 'glm_first'),
                     h4('Predicted and Actual value plot together:'),
                     plotOutput(outputId = 'glm_second'))
+
+####<<<<END<<<< Koyel Saha (10521711) <<<<

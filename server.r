@@ -1,3 +1,10 @@
+### Application name : CA1 B9DA101 - Statistics for Data Analytics
+### Course : MSc (Data Analytics) - Sep 2019 - Group A 
+### Developed by : Koyel Saha (10521711) / Monil Modi (10521306) / Parth Thakur (10520930)
+### College : Dublin Business School 
+### URL : https://parth-thakur.shinyapps.io/EOD_Analysis/
+
+
 library(readtext)
 library(ggplot2)
 
@@ -8,7 +15,9 @@ library(reshape2)
 
 library(dplyr)
 
-source('helpers.r')
+source('helpers.R')
+
+####>>>>BEGIN>>>> Monil Modi (10521306) >>>>
 
 server <- function(input, output, session) {
     
@@ -66,6 +75,10 @@ server <- function(input, output, session) {
                                           scale_x_log10() +
                                           theme(panel.background = element_rect(fill = 'light blue', colour = 'black')))
     
+####<<<<END<<<< Monil Modi (10521306) <<<<
+    
+####>>>>BEGIN>>>> Parth Thakur (10520930) >>>>
+    
     # Hypothesis Testing:
     final <- reactive(get_final(eod_data()))
     final_2 <- reactive(get_final_2(final()))
@@ -102,6 +115,10 @@ server <- function(input, output, session) {
     
     output$hypothesis_test <- renderUI(HTML(hypothesis_result(final_2())))
     
+####<<<<END<<<< Parth Thakur (10520930) <<<<
+  
+####>>>>BEGIN>>>> Koyel Saha (10521711) >>>>
+    
     glm_things <- reactive(get_glm(eod_data()))
     
     output$glm_first <- renderPrint(glm_things()['model_summary'])
@@ -114,3 +131,5 @@ server <- function(input, output, session) {
                                       theme_bw())
     
 }
+
+####<<<<END<<<< Koyel Saha (10521711) <<<<
